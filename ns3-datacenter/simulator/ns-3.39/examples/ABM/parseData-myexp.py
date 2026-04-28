@@ -34,7 +34,7 @@ def summarize(values):
 
 # FCT file columns:
 # time flowsize fct basefct slowdown basertt flowstart priority incast
-flow_df = pd.read_csv(flow_file, delim_whitespace=True)
+flow_df = pd.read_csv(flow_file, sep=r"\s+")
 
 short_flows = flow_df[(flow_df["flowsize"] < bdp) & (flow_df["incast"] == 0)]["slowdown"].tolist()
 incast_flows = flow_df[(flow_df["incast"] == 1)]["slowdown"].tolist()
@@ -48,7 +48,7 @@ long999, long99, long95, longavg, longmed = summarize(long_flows)
 # time tor bufferSizeMB occupiedBufferPct uplinkThroughput priority0..priority7
 tor_df = pd.read_csv(
     tor_file,
-    delim_whitespace=True,
+    sep=r"\s+",
     usecols=[0, 1, 2, 3, 4],
     names=["time", "tor", "bufferSizeMB", "occupiedBufferPct", "uplinkThroughput"],
     header=0,
