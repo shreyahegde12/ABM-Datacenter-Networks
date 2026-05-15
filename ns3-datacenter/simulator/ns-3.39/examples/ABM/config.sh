@@ -1,2 +1,2 @@
 NS3=$(pwd)/../..
-N_CORES=4
+N_CORES=2
